@@ -1,0 +1,260 @@
+ html,
+ body,
+ #root {
+     height: 100%;
+     margin: 0;
+     background: linear-gradient(to left, #112D4E, #0A192F);
+  }
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    height: 100%;
+}
+
+.left--section {
+    background-size: cover;
+    background-position: center;
+    flex-grow: 1;
+    width: 33.33%;
+    height: 100%;
+  
+   
+}
+.right--section {
+    width: 45%;
+    height: 100%;
+    padding-top: 3rem;
+ }
+.image {
+    padding-top: 8.5rem;
+    padding-left: 1rem;
+    width: 90%;
+    height: 90%;
+}
+ 
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.9em;
+    border: 2px #3F72AF;
+    border-radius: 15px;
+    background-color: #DBE2EF;
+    box-shadow: 0 0 0 4px #DBE2EF, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    transition: .4s ease-in-out;
+    opacity: 0.9;
+    width: 28em;
+    height: 38em;
+    position: relative;
+    z-index: 1;
+}
+
+.form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.form:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    border: 2px solid #3F72AF;
+    pointer-events: none;
+    transition: .4s ease-in-out;
+}
+
+ 
+
+.form .heading {
+    color: #112D4E;
+    background-color: transparent;
+    letter-spacing: 0.5em;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000, -1px -1px 2px #606C38;
+    font-size: 2.5em;
+    margin-right: 0;
+    padding-right: 0;
+ }
+
+.input-field,
+.input-field1,
+.input-field2 {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 0 10px;
+}
+
+.input-field input {
+    width: 20em;
+    height: 3.8em;
+    outline: none;
+    border: 1px solid #112D4E;
+    color: #283618;
+    border-radius: 10px;
+    background: transparent;
+    text-align: center;
+    outline: none;
+    margin-bottom: 20px;
+    color: #112D4E;
+    transition: .3s ease-in-out;
+}
+
+.input-field input:focus {
+    border-color: #3F72AF;
+    box-shadow: 0 0 5px rgba(63, 114, 175, 0.5);
+}
+
+::placeholder {
+    color: #112D4E;
+    text-align: center;
+    font-weight: 450;
+    font-size: 1.1em;
+}
+
+.form button {
+    align-self: center;
+    border-radius: 18px;
+    outline: none;
+    border: none;
+    color: #F9F7F7;
+    background-color: #112D4E;
+    margin-top: 1em;
+    width: 7em;
+    height: 2em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: .4s ease-in-out opacity, .3s ease-in-out transform;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.form p button {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.forgot-password {
+    color: #112D4E;
+    transition: .3s ease-in-out;
+}
+
+.forgot-password:hover {
+    color: #3F72AF;
+}
+
+.sign-up a {
+    color: #112D4E;
+    transition: .3s ease-in-out;
+}
+
+.sign-up a:hover {
+    color: #3F72AF;
+
+}
+
+.sign-up{
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.forgot-password{
+    text-align: center;
+}
+.header {
+    background-color: #DBE2EF;   
+     background-position: center center;
+    background-repeat: no-repeat;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.headerText {
+    color: #112D4E;
+    font-size: 1.2em;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+}
+.error-message{
+    font-weight: bold;
+    text-align: center;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media screen and (max-width: 767px) {
+    .left-section {
+        flex-grow: 0.5;
+        margin-right: -12rem;
+    }
+
+    .right-section {
+        flex-grow: 1.5;
+    }
+
+    .form {
+        width: 18em;
+        height: 28em;
+    }
+
+    .form .heading {
+        font-size: 1.5em;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .left-section {
+        flex-grow: 0.5;
+        margin-right: -7.6rem;
+    }
+
+    .right-section {
+        flex-grow: 1.5;
+    }
+
+    .form {
+        width: 16em;
+        height: 26em;
+    }
+
+    .form .heading {
+        font-size: 1.5em;
+    }
+
+    .form .input {
+        width: 14em;
+        height: 2em;
+    }
+
+    .form .sign-up {
+        font-size: 0.9em;
+    }
+}
