@@ -15,8 +15,9 @@ interface Subject {
 const Body: React.FC<{}> = () => {
     
     const navigate = useNavigate();
-    const goToTakeExam = (courseId: number) => {
-        navigate(`/QuestionMockExam/${courseId}`);
+    const goToTakeExam = (subjectId: number) => {
+         navigate(`/DifficultyOuiz/${subjectId}`);
+
     };
 
     const [subjects, setSubjects] = useState<Subject[]>([]);
