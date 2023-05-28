@@ -35,13 +35,11 @@
     display: flex;
     width: 200px;
     justify-content: center;
-    /* margin-left:3% */
-   
 }
 
 .link a {
     text-decoration: none;
-    /* font-family: Arial, sans-serif; */
+    font-family: 'Outfit';
     margin-left: 10px;
     font-size: 24px;
     font-weight: bold;
@@ -58,7 +56,6 @@
 .menu button
 {
     text-decoration: none;
-    /* font-family: Arial, sans-serif; */
     font-size: 24px;
     font-weight: bold;
     color: white;
@@ -66,6 +63,7 @@
     border: none;
     visibility: visible;
     cursor: pointer;
+    font-family: 'Outfit';
 }
 
 .menu button:hover
@@ -86,7 +84,7 @@
     all:unset;
     position: relative;
     font-size: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Outfit';
     text-decoration: none;
     color:#002F35;
     font-weight: bold;
@@ -150,7 +148,7 @@
 .burgerMenu-container button
 {
     text-decoration: none;
-    font-family: Arial, sans-serif;
+    font-family: 'Outfit';
     font-size: 24px;
     margin: 0;
     padding: 0;
@@ -172,7 +170,7 @@
     text-decoration: none;
     position: relative;
     font-size: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Outfit';
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
