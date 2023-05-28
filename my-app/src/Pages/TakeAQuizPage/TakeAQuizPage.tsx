@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../NavBar/NavBar';
 import imagine from '../HomePage/Images/wallpaper.jpg'
-import styles from './TakeAQuiz.module.css'
+import styles from './TakeAQuizPage.module.css'
 import { useNavigate } from 'react-router-dom';
 import Frame from '../../Components/Frame'
 
@@ -22,15 +22,23 @@ const Body: React.FC<{}> = () => {
     const [subjects, setSubjects] = useState<Subject[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
-    useEffect(() => {
-    const fetchData = async () => {
-        const response = await fetch(`http://localhost:8085/subjects`);
-        const data = await response.json();
-        setSubjects(data);
-        setIsLoading(false);
-    };
-    fetchData();
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8085/subjects`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch subjects');
+      }
+      
+      const data = await response.json();
+      setSubjects(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('An error occurred while fetching subjects:', error);
+     }
+  }; 
+  fetchData();
 }, []);
 
     return ( 
