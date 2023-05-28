@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './LoginPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import leftSectionImage from './JavaLearningZone.png';
+import wallpaper from '../HomePage/Images/wallpaper.jpg'
 
 const Header: React.FC<{}> = () => {
   return (
@@ -11,7 +12,7 @@ const Header: React.FC<{}> = () => {
   );
 };
 
-const LoginPage: React.FC<{}> = () => {
+const  LoginPage: React.FC<{}> = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -33,7 +34,7 @@ const LoginPage: React.FC<{}> = () => {
       });
 
       if (response.ok) {
-          navigate('/SignUpPage');  
+          navigate('/Home');  
       } else {
          setErrorMessage('Login failed. Please try again.');
       }
@@ -50,9 +51,11 @@ const LoginPage: React.FC<{}> = () => {
   return (
     <>
       <div className={styles['main']}>
+
         <div className={styles['left--section']}>
           <img src={leftSectionImage} alt="" className={styles['image']} />
         </div>
+
         <div className={styles['right--section']}>
           <div className={styles['form']}>
             <p className={styles['heading']}>LOG IN</p>
@@ -72,9 +75,11 @@ const LoginPage: React.FC<{}> = () => {
                 Don't have an account?   <a className={styles['forgot-password']}  href="SignUpPage"> Sign Up </a>
               </p>
             </form>
-          </div>
         </div>
+        </div>
+ 
       </div>
+      
     </>
   );
 };

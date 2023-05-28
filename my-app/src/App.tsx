@@ -4,6 +4,7 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import Signup from './Pages/SignUpPage/SignUpPage';
 import Home from './Pages/HomePage/HomePage';
 import DifficultyOuiz from './Pages/DifficultyTakeAQuiz/DifficultyTakeAQuiz';
+import Quiz from './Pages/TakeAQuizPage/TakeAQuizPage'
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -13,7 +14,8 @@ const App: React.FC = (): JSX.Element => {
         <Route path='SignUpPage' element={< Signup />} />
         <Route path="Home" element={<Home />} />
         <Route path="DifficultyOuiz" element={<DifficultyOuiz />} />
-       </Routes>
+         <Route path="Quiz" element={<Quiz />} />
+     </Routes>
     </Router>
   );
 };
