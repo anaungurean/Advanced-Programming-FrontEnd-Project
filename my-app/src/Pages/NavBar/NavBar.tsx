@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NavBar.module.css'
 import { Link } from "react-router-dom";
-import img_logo from './Images/logo.png';
+import img_logo from './Images/logo1.png';
 import MenuDropDown from './MenuDropDown';
 import BurgerMenu from './BurgerMenu';
 function Nav(){
