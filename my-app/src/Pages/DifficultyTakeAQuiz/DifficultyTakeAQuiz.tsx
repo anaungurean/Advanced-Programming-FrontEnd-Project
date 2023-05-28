@@ -10,35 +10,39 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
  
 
-const DifficultyQuiz:React.FC<{}> = () => {
+const DifficultyQuestion:React.FC<{}> = () => {
 
     const { subjectId } = useParams<{ subjectId: string }>();
-    console.log(subjectId);
+    const easy = 1; 
+    const medium = 2; 
+    const hard = 3; 
+    const progressive = 4; 
+
 
   return (
     <body>
       <Nav />
       <div className={styles['body--img--container']}>
         <ul className={styles['link--image']}>
-          <Link to={`/Quiz/${subjectId}/low`}>
+          <Link to={`/Question/${subjectId}/${easy}`}>
             <img src={img_low} alt="" className={styles['body--img']} />
           </Link>
         </ul>
 
         <ul className={styles['link--image']}>
-          <Link to={`/Quiz/${subjectId}/medium`}>
+          <Link to={`/Question/${subjectId}/${medium}`}>
             <img src={img_medium} alt="" className={styles['body--img']} />
           </Link>
         </ul>
 
         <ul className={styles['link--image']}>
-          <Link to={`/Quiz/${subjectId}/high`}>
+          <Link to={`/Question/${subjectId}/${hard}`}>
             <img src={img_high} alt="" className={styles['body--img']} />
           </Link>
         </ul>
 
         <ul className={styles['link--image']}>
-          <Link to={`/Quiz/${subjectId}/surpriza`}>
+          <Link to={`/Question/${subjectId}/${progressive}`}>
             <img src={img_surpriza} alt="" className={styles['body--img']} />
           </Link>
         </ul>
@@ -47,4 +51,4 @@ const DifficultyQuiz:React.FC<{}> = () => {
   );
 };
 
-export default DifficultyQuiz;
+export default DifficultyQuestion;
