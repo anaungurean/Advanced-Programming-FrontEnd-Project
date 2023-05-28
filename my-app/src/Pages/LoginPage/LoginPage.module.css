@@ -1,18 +1,27 @@
  html,
  body,
  #root {
-     height: 100%;
-     margin: 0;
-     background: linear-gradient(to left, #112D4E, #0A192F);
-  }
+    height: 100%;
+    margin: 0;
+    background-image: url('../HomePage/Images/wallpaper3.png');
+    background-size: 100% 100%;
+
+    
+}
 
 .main {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 0;
+  
+}
+
+.section{
     display: flex;
     flex-wrap: wrap;
     gap: 0;
-    height: 100%;
-}
 
+}
 .left--section {
     background-size: cover;
     background-position: center;
@@ -50,6 +59,7 @@
     height: 38em;
     position: relative;
     z-index: 1;
+    margin-left: 4rem;
 }
 
 .form:hover {
