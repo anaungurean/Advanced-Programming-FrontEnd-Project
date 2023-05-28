@@ -12,7 +12,7 @@ const Header: React.FC<{}> = () => {
   );
 };
 
-const LoginPage: React.FC<{}> = () => {
+const  LoginPage: React.FC<{}> = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -34,7 +34,7 @@ const LoginPage: React.FC<{}> = () => {
       });
 
       if (response.ok) {
-          navigate('/SignUpPage');  
+          navigate('/Home');  
       } else {
          setErrorMessage('Login failed. Please try again.');
       }
@@ -51,8 +51,7 @@ const LoginPage: React.FC<{}> = () => {
   return (
     <>
       <div className={styles['main']}>
-            {/* <img src={wallpaper} alt="" className={styles['wallpaper']} /> */}
- 
+
         <div className={styles['left--section']}>
           <img src={leftSectionImage} alt="" className={styles['image']} />
         </div>
