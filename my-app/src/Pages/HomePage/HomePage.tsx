@@ -12,7 +12,7 @@ const Body: React.FC<{}> = () => {
     <>
     <div className={styles['body--img--container']}>
         <ul className={styles['link--image']} >
-            <Link to='/DifficultyOuiz'>
+            <Link to='/Quiz'>
                 <img src={img_quiz} alt="" className={styles['body--img']} />
             </Link>
         </ul>

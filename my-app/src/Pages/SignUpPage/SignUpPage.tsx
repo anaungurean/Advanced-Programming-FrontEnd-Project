@@ -43,6 +43,7 @@ const SignupPage: React.FC<{}> = () => {
 
       if (response.ok) {
         console.log('Successful sign up');
+        navigate('/');
         // Perform any necessary actions after successful sign up, such as redirecting to another page
       } else {
         setErrorMessage('This email is already registered.');
