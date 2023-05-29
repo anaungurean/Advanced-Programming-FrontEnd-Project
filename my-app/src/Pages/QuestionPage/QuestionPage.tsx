@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Nav from '../NavBar/NavBar';
 import Frame from '../../Components/Frame';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import './QuestionPage.css'
+import './QuestionPage.css';
+
+interface QuizData {
+  idUser: number;
+  idSubject: number;
+  difficulty: number;
+  question: Question;
+  answers: Answer[];
+  score: string;
+}
 
 interface Question {
   id: number;
   subjectId: number;
   questionText: string;
   questionDifficulty: number;
+  score: string;
+  answersQuestion: Answer[]; // Update: Use 'answersQuestion' instead of 'answers'
 }
 
 interface Answer {
@@ -16,18 +27,13 @@ interface Answer {
   questionId: number;
   answerText: string;
   correct: number;
-}
-
-interface QuizData {
-  question: Question;
-  answers: Answer[];
+  chosen: boolean;
 }
 
 const Body: React.FC<{}> = () => {
-  const { subjectId } = useParams<{ subjectId: string }>();
-  const { difficulty } = useParams<{ difficulty: string }>();
-
-  const [questions, setQuestions] = useState<QuizData[]>([]);
+  const { difficulty, subjectId } = useParams();
+  const token = localStorage.getItem('token') || '';
+  const [questions, setQuestions] = useState<QuizData[]>([]); // Update: Use 'QuizData' instead of 'QuizQuestion'
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
   const [selectedChoices, setSelectedChoices] = useState<{ [key: number]: boolean }>({});
@@ -49,7 +55,7 @@ const Body: React.FC<{}> = () => {
     const currentQuestion = updatedQuestions[currentQuestionIndex];
     currentQuestion.answers.forEach((answer) => {
       if (answer.id === id) {
-        answer.correct = answer.correct === 0 ? 1 : 0;
+        answer.chosen = !answer.chosen;
       }
     });
     setQuestions(updatedQuestions);
@@ -66,10 +72,10 @@ const Body: React.FC<{}> = () => {
       question.answers.forEach((answer) => {
         if (answer.correct) {
           correctCount++;
-          if (selectedChoices[answer.id]) {
+          if (answer.chosen) {
             chosenCount++;
           }
-        } else if (selectedChoices[answer.id]) {
+        } else if (answer.chosen) {
           chosenCount--;
         }
       });
@@ -86,7 +92,7 @@ const Body: React.FC<{}> = () => {
       }
 
       const score = correctCount === 0 ? 0 : Math.max(chosenCount, 0) / correctCount;
-      // question.question.questionDifficulty = score.toFixed(2);
+      question.score = score.toFixed(2);
     });
 
     const grade = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
@@ -96,7 +102,7 @@ const Body: React.FC<{}> = () => {
       questions,
       grade: formattedGrade,
     };
-
+console.log(state);
     navigate('/ResultMockExam', { state });
   };
 
@@ -106,15 +112,14 @@ const Body: React.FC<{}> = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch(apiUrl);
-      const data: QuizData[] = await response.json();
-      console.log(data);
+      const response = await fetch(apiUrl, { headers: { Authorization: `Bearer ${token}` } });
+      const data = await response.json();
       setQuestions(data);
       setLoading(false);
     };
 
     fetchQuestions();
-  }, [apiUrl]);
+  }, [apiUrl, token]);
 
   return (
     <div className="body">
@@ -122,7 +127,7 @@ const Body: React.FC<{}> = () => {
         <Frame>
           <div className="loading">Loading questions...</div>
         </Frame>
-      ) : questions.length > 0 && currentQuestion ? (
+      ) : currentQuestion ? (
         <div className="questionPart">
           <div className="questionQuery">
             <h1 className="question">
@@ -182,12 +187,10 @@ const Body: React.FC<{}> = () => {
 
 const QuestionPage = () => {
   return (
-    <body>
+    <div>
       <Nav />
       <Body />
-  
-     
-    </body>
+    </div>
   );
 };
 
