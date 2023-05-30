@@ -30,6 +30,8 @@ interface Answer {
   chosen: boolean;
 }
 
+
+
 const Body: React.FC<{}> = () => {
   const { difficulty, subjectId } = useParams();
   const token = localStorage.getItem('token') || '';
@@ -61,7 +63,7 @@ const Body: React.FC<{}> = () => {
     setQuestions(updatedQuestions);
   };
 
-  const handleFinishMockExam = () => {
+  const handleFinishMockExam = async () => {
     let totalQuestions = 0;
     let correctAnswers = 0;
 
@@ -95,15 +97,48 @@ const Body: React.FC<{}> = () => {
       question.score = score.toFixed(2);
     });
 
-    const grade = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
-    const formattedGrade = grade.toFixed(2);
+    const grade1 = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
+ 
+    let grade = grade1.toFixed(2);
+    navigate('/ResultQuiz', { state: { questions, grade} });
 
-    const state = {
-      questions,
-      grade: formattedGrade,
-    };
-console.log(state);
-    navigate('/ResultMockExam', { state });
+    // const quizData = {
+    //   id: 0,
+    //   idUser: 0, // Set the user ID accordingly
+    //   totalScore: formattedGrade,
+    //   quizQuestions: questions.map((question) => ({
+    //     id: 0,
+    //     quiz: 'string',
+    //     idQuestion: question.question.id,
+    //     idAnswer: question.answers.find((answer) => answer.chosen)?.id || 0,
+    //     score: Number(question.score),
+    //   })),
+    // };
+       
+     
+    // try {
+    //   const response = await fetch('http://localhost:8085/quizzes/7', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: JSON.stringify(quizData),
+    //   });
+    //   console.log(quizData);
+
+    //   if (response.ok) {
+    //     // Handle success scenario
+    //     console.log('Quiz submitted successfully!');
+
+
+    //   } else {
+    //     // Handle error scenario
+    //     console.log('Failed to submit quiz.');
+    //   }
+    // } catch (error) {
+    //   console.error('Error submitting quiz:', error);
+    // }
   };
 
   const apiUrl = `http://localhost:8085/questions/quiz?difficulty=${difficulty}&subjectId=${subjectId}`;
@@ -175,8 +210,8 @@ console.log(state);
           }
         >
           {currentQuestionIndex === questions.length - 1 ? (
-            <Link to="/ResultMockExam">Finish the mock exam</Link>
-          ) : (
+           'Finish the mock exam'
+                  ) : (
             'Next Question'
           )}
         </button>

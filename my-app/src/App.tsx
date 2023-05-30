@@ -6,6 +6,8 @@ import Home from './Pages/HomePage/HomePage';
 import DifficultyOuiz from './Pages/DifficultyTakeAQuiz/DifficultyTakeAQuiz';
 import Quiz from './Pages/TakeAQuizPage/TakeAQuizPage'
 import Question from './Pages/QuestionPage/QuestionPage'
+import MyResults from './Pages/MyResultsPage/MyResultsPage'
+import ResultQuiz from './Pages/ResultQuiz/ResultQuiz';
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -17,6 +19,8 @@ const App: React.FC = (): JSX.Element => {
         <Route path="/DifficultyOuiz/:subjectId" element={<DifficultyOuiz />}/>        
         <Route path="Quiz" element={<Quiz />} />
         <Route path="Question/:subjectId/:difficulty" element={<Question /> }/>
+        <Route path="MyResults" element={<MyResults />} />
+        <Route path="/ResultQuiz" element={<ResultQuiz />} />
 
      </Routes>
     </Router>
