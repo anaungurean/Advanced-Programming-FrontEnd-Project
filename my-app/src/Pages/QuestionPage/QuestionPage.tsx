@@ -97,10 +97,10 @@ const Body: React.FC<{}> = () => {
       question.score = score.toFixed(2);
     });
 
-    const grade = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
-    const formattedGrade = grade.toFixed(2);
-
-    navigate('/ResultQuiz', { state: { questions,grade } });
+    const grade1 = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
+ 
+    let grade = grade1.toFixed(2);
+    navigate('/ResultQuiz', { state: { questions, grade} });
 
     // const quizData = {
     //   id: 0,
