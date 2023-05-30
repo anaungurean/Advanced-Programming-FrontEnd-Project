@@ -1,0 +1,42 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 35px;
+    font-weight: bold;
+     text-align: center;
+}
+
+.score {
+    font-size: 25px;
+    text-align: center;
+}
+
+.question {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.answer {
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.index {
+    font-weight: bold;
+    margin-right: 5px;
+}
