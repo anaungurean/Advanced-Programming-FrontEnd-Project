@@ -57,8 +57,13 @@ const Body: React.FC<{}> = () => {
               <li
                 key={answer.id}
                 className={`${styles.answer} ${
-                  answer.correct ? styles.correct : ''
-                } ${!answer.correct && answer.chosen ? styles.incorrect : ''}`}
+                  answer.correct ? styles.correct : ''} 
+                  ${
+                  answer.chosen ? styles.chosen : ''
+              
+                }
+                  ${!answer.correct && answer.chosen ? styles.incorrect : ''}`
+              }
               >
                 <span className={styles.index}>{`${index + 1}. `}</span>
                 {answer.answerText}
