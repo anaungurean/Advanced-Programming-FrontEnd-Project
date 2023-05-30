@@ -60,8 +60,8 @@ const Body: React.FC<{}> = () => {
                   answer.correct ? styles.correct : ''} 
                   ${
                   answer.chosen ? styles.chosen : ''
-              
                 }
+                 ${ answer.correct && answer.chosen ? styles.chosen : ''}
                   ${!answer.correct && answer.chosen ? styles.incorrect : ''}`
               }
               >
