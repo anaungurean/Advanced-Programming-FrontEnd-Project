@@ -1,62 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../NavBar/NavBar';
-import styles from './MyResultsPage.module.css'
-import { useNavigate } from 'react-router-dom';
-import Frame from '../../Components/Frame'
+import styles from './MyResultsPage.module.css';
+import Frame from '../../Components/Frame';
 
+interface QuizInfo {
+  id: number;
+  totalScore: number;
+  subjectId: number;
+  subjectTitle: string;
+  difficulty: number;
+}
 
 const Body: React.FC<{}> = () => {
-    
+  const [quizInfo, setQuizInfo] = useState<QuizInfo[]>([]);
 
-    return ( 
-       <div className={styles['container']}>
-         <div className={styles['column']}>
-                    <div className={styles['body--title']}>
-                        My exam scores
-                    </div>
-                </div>
-                <div className={styles["column"]}>
-                    <div className={styles["course-container--header"]}>
-                        <div className={styles["difficulty--container"]}>Difficulty</div>
-                        <div className={styles["date--container"]}>Date</div>
-                        <div className={styles["exam--container"]}>Subject Title</div>
-                        <div className={styles["score--container"]}>Score</div>
-                        <div className={styles["button--container"]}></div>
-                    </div>
-                </div>
+  useEffect(() => {
+    fetchQuizInfo();
+  }, []);
 
-                <div className={styles['column']}>
-                    <div className={styles['body--line']}></div>
-                </div>
+  const fetchQuizInfo = async () => {
+    try {
+      const response = await fetch('http://localhost:8085/quizzes/66');
+      if (response.ok) {
+        const data: QuizInfo[] = await response.json();
+        setQuizInfo(data);
+      } else {
+        console.error('Failed to fetch quiz info');
+      }
+    } catch (error) {
+      console.error('Error occurred while fetching quiz info:', error);
+    }
+  };
 
-                <div className={styles["course-container"]}>
-                    
-                    <div className={styles["difficulty--container"]}>1</div>
-                    <div className={styles["date--container"]}> data</div>
-                    <div className={styles["exam--container"]}>examen</div>
-                    <div className={styles["score--container"]}>6</div>
-                    <div className={styles["button--container"]}>
-                    <button>
-                        View My Exam Answers
-                    </button>
-                    </div>
-                </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.column}>
+        <div className={styles['body--title']}>My exam scores</div>
+      </div>
+      {quizInfo.length > 0 ? (
+        <div className={styles.column}>
+             <div className={styles['body--line']}></div>          
+            <div className={styles['course-container--header']}>
+            <div className={styles['id--container']}>ID</div>
+            <div className={styles['exam--container']}>Title</div>
+            <div className={styles['difficulty--container']}>Difficulty</div>
+            <div className={styles['score--container']}>Score</div>
+            <div className={styles['button--container']}></div>
 
-                
+          </div>
+          {quizInfo.map((quiz) => (
+            <div key={quiz.id} className={styles['course-container']}>
+
+              <div className={styles['id--container']}>{quiz.id}</div>
+              <div className={styles['exam--container']}>{quiz.subjectTitle}</div>
+              <div className={styles['difficulty--container']}>{quiz.difficulty}</div>
+              <div className={styles['score--container']}>{quiz.totalScore}</div>
+              <div className={styles['button--container']}>
+                <button>View My Exam Answers</button>
+              </div>
+            </div>
+          
+          ))}
+        </div>
+      ) : (
+        <p>Loading quiz info...</p>
+      )}
     </div>
- 
-    )
-}
+  );
+};
 
 const MyResults = () => {
   return (
     <body>
-            <Nav />
-            <Frame> 
-                <Body />
-            </Frame>       
+      <Nav />
+      <Frame>
+        <Body />
+      </Frame>
     </body>
-  )
-}
+  );
+};
 
-export default MyResults
+export default MyResults;
