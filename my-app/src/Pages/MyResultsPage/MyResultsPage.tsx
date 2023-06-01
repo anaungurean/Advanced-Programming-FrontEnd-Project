@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../NavBar/NavBar';
 import styles from './MyResultsPage.module.css';
 import Frame from '../../Components/Frame';
+import { useNavigate } from "react-router-dom";
+
 
 interface QuizInfo {
   id: number;
@@ -18,9 +20,11 @@ const Body: React.FC<{}> = () => {
     fetchQuizInfo();
   }, []);
 
+  const userId = localStorage.getItem('userId');
   const fetchQuizInfo = async () => {
     try {
-      const response = await fetch('http://localhost:8085/quizzes/66');
+      
+      const response = await fetch(`http://localhost:8085/quizzes/${userId}`);
       if (response.ok) {
         const data: QuizInfo[] = await response.json();
         setQuizInfo(data);
@@ -30,6 +34,11 @@ const Body: React.FC<{}> = () => {
     } catch (error) {
       console.error('Error occurred while fetching quiz info:', error);
     }
+  };
+
+  const navigate = useNavigate();
+  const goToExamAnswers = (quizId: number) => {
+    navigate(`/ViewMyQuizAnswers/${quizId}`);
   };
 
   return (
@@ -56,7 +65,9 @@ const Body: React.FC<{}> = () => {
               <div className={styles['difficulty--container']}>{quiz.difficulty}</div>
               <div className={styles['score--container']}>{quiz.totalScore}</div>
               <div className={styles['button--container']}>
-                <button>View My Exam Answers</button>
+                <button onClick={() => goToExamAnswers(quiz.id)}>
+                  View My Exam Answers
+                </button>
               </div>
             </div>
           

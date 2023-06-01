@@ -74,6 +74,7 @@
     opacity: 100%;
     inline-size: 60%;
     writing-mode: horizontal-tb;
+    text-align: center;
 }
 
 .difficulty--container {
@@ -96,6 +97,7 @@
     color:#3E3E3E;
     opacity: 100%;
     inline-size: 18%;
+    text-align: center;
 }
 
 .button--container {
@@ -123,6 +125,7 @@
     font-size: calc(10px + 1.2vw);
     color:#3E3E3E;
     opacity: 100%;
+    text-align: center;
     
 }
 

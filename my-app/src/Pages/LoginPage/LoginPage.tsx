@@ -34,7 +34,20 @@ const  LoginPage: React.FC<{}> = () => {
       });
 
       if (response.ok) {
-          navigate('/Home');  
+
+        const emailResponse = await fetch(`http://localhost:8085/users/email/${username}`);
+        if (emailResponse.ok) {
+          const userData = await emailResponse.json();
+          const userId = userData.id;
+          const userEmail = userData.email;
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('userEmail', userEmail);
+        } else {
+          setErrorMessage('Failed to retrieve user email.');
+        }
+
+
+        navigate('/Home');  
       } else {
          setErrorMessage('Login failed. Please try again.');
       }
