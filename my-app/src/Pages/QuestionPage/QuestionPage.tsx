@@ -117,7 +117,7 @@ const Body: React.FC<{}> = () => {
   };
 
   try {
-    const response = await fetch('http://localhost:8085/quizzes/quizzes/68', {
+    const response = await fetch('http://localhost:8085/quizzes/quizzes/66', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
