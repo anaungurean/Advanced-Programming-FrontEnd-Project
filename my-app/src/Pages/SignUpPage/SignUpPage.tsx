@@ -6,7 +6,7 @@ import leftSectionImage from '../LoginPage/JavaLearningZone.png';
 const Header: React.FC<{}> = () => {
   return (
     <nav className={styles.header}>
-      <div className={styles.headerText}>Welcome to JavaLearnZone! Start your Java learning adventure now!</div>
+      <div className={styles.headerText}>Welcome to JavaLearnUniverse! Start your Java learning adventure now!</div>
     </nav>
   );
 };
@@ -44,8 +44,7 @@ const SignupPage: React.FC<{}> = () => {
       if (response.ok) {
         console.log('Successful sign up');
         navigate('/');
-        // Perform any necessary actions after successful sign up, such as redirecting to another page
-      } else {
+       } else {
         setErrorMessage('This email is already registered.');
       }
     } catch (error) {
