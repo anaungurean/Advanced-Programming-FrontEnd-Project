@@ -1,0 +1,74 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2%;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+    font-style: normal;
+    color: #000000;
+    opacity: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+ 
+}
+
+.input {
+    padding: 8px;
+    border: 1px solid #112D4E;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    background-color: #F9F7F7;
+}
+
+
+.button {
+     
+        background-color: #112D4E;
+        border: none;
+        border-radius: 5px;
+        font-size: calc(8px + 1.0vw);
+        font-family: 'Outfit';
+        cursor: pointer;
+        color: #F9F7F7;
+        box-shadow: 3px 5px 18px #112D4E;
+        margin-top: 2rem;
+        padding-top: 2%;
+        padding-bottom: 1%;
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.4s;
+}
+.button:hover {
+    opacity: 100%;
+    background-color: #04172c;
+}
+
+.body--line {
+    background-image: url("../HomePage/Images/line.png");
+    min-height: 0.5%;
+    margin-top: 0.5%;
+    position: absolute;
+    width:30%;
+}
+
+.bullet {
+    margin-right: 5px;
+}

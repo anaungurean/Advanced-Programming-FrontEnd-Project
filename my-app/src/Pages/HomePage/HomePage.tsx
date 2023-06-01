@@ -24,7 +24,7 @@ const Body: React.FC<{}> = () => {
         </ul>
 
         <ul className={styles['link--image']} >
-            <Link to='/Home'>
+            <Link to='/Ranking'>
                 <img src={img_clasament} alt="" className={styles['body--img']} />
             </Link>
         </ul>
