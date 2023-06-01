@@ -19,7 +19,7 @@ interface Question {
   questionText: string;
   questionDifficulty: number;
   score: string;
-  answersQuestion: Answer[]; // Update: Use 'answersQuestion' instead of 'answers'
+  answersQuestion: Answer[]; 
 }
 
 interface Answer {
@@ -29,7 +29,6 @@ interface Answer {
   correct: number;
   chosen: boolean;
 }
-
 
 
 const Body: React.FC<{}> = () => {
@@ -63,79 +62,85 @@ const Body: React.FC<{}> = () => {
     setQuestions(updatedQuestions);
   };
 
-  const handleFinishMockExam = async () => {
-    let totalQuestions = 0;
-    let correctAnswers = 0;
+ const handleFinishMockExam = async () => {
+  let totalQuestions = 0;
+  let correctAnswers = 0;
 
-    questions.forEach((question) => {
-      let correctCount = 0;
-      let chosenCount = 0;
+  questions.forEach((question) => {
+    let correctCount = 0;
+    let chosenCount = 0;
 
-      question.answers.forEach((answer) => {
-        if (answer.correct) {
-          correctCount++;
-          if (answer.chosen) {
-            chosenCount++;
-          }
-        } else if (answer.chosen) {
-          chosenCount--;
+    question.answers.forEach((answer) => {
+      if (answer.correct) {
+        correctCount++;
+        if (answer.chosen) {
+          chosenCount++;
         }
-      });
-
-      if (correctCount > 0) {
-        totalQuestions++;
-        correctAnswers += Math.max(chosenCount, 0) / correctCount;
-      } else if (chosenCount === 0 && correctCount === 0) {
-        totalQuestions++;
-        correctAnswers += 0;
-      } else if (chosenCount === 0) {
-        totalQuestions++;
-        correctAnswers += 1;
+      } else if (answer.chosen) {
+        chosenCount--;
       }
-
-      const score = correctCount === 0 ? 0 : Math.max(chosenCount, 0) / correctCount;
-      question.score = score.toFixed(2);
     });
 
-    const grade = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
-    const formattedGrade = grade.toFixed(2);
-
-    const quizData = {
-      id: 0,
-      idUser: 0, // Set the user ID accordingly
-      totalScore: formattedGrade,
-      quizQuestions: questions.map((question) => ({
-        id: 0,
-        quiz: 'string',
-        idQuestion: question.question.id,
-        idAnswer: question.answers.find((answer) => answer.chosen)?.id || 0,
-        score: Number(question.score),
-      })),
-    };
-console.log(quizData);
-    try {
-      const response = await fetch('http://localhost:8085/quizzes/7', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(quizData),
-      });
-      console.log(quizData);
-
-      if (response.ok) {
-        // Handle success scenario
-        console.log('Quiz submitted successfully!');
-        navigate('/ResultExam');
-      } else {
-        // Handle error scenario
-        console.log('Failed to submit quiz.');
-      }
-    } catch (error) {
-      console.error('Error submitting quiz:', error);
+    if (correctCount > 0) {
+      totalQuestions++;
+      correctAnswers += Math.max(chosenCount, 0) / correctCount;
+    } else if (chosenCount === 0 && correctCount === 0) {
+      totalQuestions++;
+      correctAnswers += 0;
+    } else if (chosenCount === 0) {
+      totalQuestions++;
+      correctAnswers += 1;
     }
+
+    const score = correctCount === 0 ? 0 : Math.max(chosenCount, 0) / correctCount;
+    question.score = score.toFixed(2);
+  });
+
+  const grade1 = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
+  const grade = grade1.toFixed(2);
+
+  const postData = {
+    difficult: difficulty,
+    idSubject: subjectId,
+    score: grade,
+    questionWithAnswers: questions.map((question) => ({
+      question: {
+        idQuestion: question.question.id,
+        score: parseFloat(question.score),
+      },
+      answers: question.answers
+        .filter((answer) => answer.chosen)
+        .map((answer) => ({
+          idAnswer: answer.id,
+        })),
+    })),
   };
+
+  try {
+    const response = await fetch('http://localhost:8085/quizzes/quizzes/68', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': '*/*',
+      },
+      body: JSON.stringify(postData),
+    });
+
+     if (response.ok) {
+      // Handle successful response
+      console.log('Quiz data submitted successfully');
+    } else {
+      // Handle error response
+      console.log('Quiz data submission failed');
+    }
+  } catch (error) {
+    // Handle network or other error
+    console.error('An error occurred while submitting the quiz data:', error);
+  }
+
+  navigate('/ResultQuiz', { state: { questions, grade } });
+};
+
 
   const apiUrl = `http://localhost:8085/questions/quiz?difficulty=${difficulty}&subjectId=${subjectId}`;
 
@@ -206,8 +211,8 @@ console.log(quizData);
           }
         >
           {currentQuestionIndex === questions.length - 1 ? (
-            <Link to="/ResultExam">Finish the mock exam</Link>
-          ) : (
+           'Finish the mock exam'
+                  ) : (
             'Next Question'
           )}
         </button>

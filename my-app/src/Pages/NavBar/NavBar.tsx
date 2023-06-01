@@ -14,7 +14,7 @@ function Nav(){
            
         <div className={styles['links-container']}>
           <ul className={styles['link']} >
-            <Link to="/Student">Home</Link>
+            <Link to="/Home">Home</Link>
           </ul>
 
           <ul className={styles['link']} >

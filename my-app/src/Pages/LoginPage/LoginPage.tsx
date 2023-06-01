@@ -7,7 +7,7 @@ import wallpaper from '../HomePage/Images/wallpaper.jpg'
 const Header: React.FC<{}> = () => {
   return (
     <nav className={styles.header}>
-      <div className={styles.headerText}>Welcome to JavaLearnZone! Start your Java learning adventure now!</div>
+      <div className={styles.headerText}>Welcome to JavaLearnUniverse! Start your Java learning adventure now!</div>
     </nav>
   );
 };
@@ -43,9 +43,7 @@ const  LoginPage: React.FC<{}> = () => {
     }
   };
   
-    const handleSignUpClick = () => {
-    navigate('/SignUpPage'); 
-  };
+    
 
 
   return (
