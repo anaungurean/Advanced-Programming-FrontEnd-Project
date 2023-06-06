@@ -1,10 +1,9 @@
 import React from 'react';
 import Nav from '../NavBar/NavBar';
 import styles from './DifficultyTakeAQuiz.module.css';
-import img_low from './Images/low.png';
-import img_medium from './Images/medium.png';
-import img_high from './Images/high.png';
-import img_surpriza from './Images/surpriza.png';
+import img_low from './Images/single.png';
+import img_medium from './Images/multiple.png';
+import img_surpriza from './Images/progressive.png';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 
@@ -15,8 +14,8 @@ const DifficultyQuestion:React.FC<{}> = () => {
     const { subjectId } = useParams<{ subjectId: string }>();
     const easy = 1; 
     const medium = 2; 
-    const hard = 3; 
-    const progressive = 4; 
+    const userId = localStorage.getItem('userId');
+
 
 
   return (
@@ -34,15 +33,9 @@ const DifficultyQuestion:React.FC<{}> = () => {
             <img src={img_medium} alt="" className={styles['body--img']} />
           </Link>
         </ul>
-
+ 
         <ul className={styles['link--image']}>
-          <Link to={`/Question/${subjectId}/${hard}`}>
-            <img src={img_high} alt="" className={styles['body--img']} />
-          </Link>
-        </ul>
-
-        <ul className={styles['link--image']}>
-          <Link to={`/Question/${subjectId}/${progressive}`}>
+          <Link to={`/ProgressiveQuiz/${userId}/${subjectId}`}>
             <img src={img_surpriza} alt="" className={styles['body--img']} />
           </Link>
         </ul>

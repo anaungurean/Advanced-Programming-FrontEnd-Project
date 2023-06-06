@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Nav from '../NavBar/NavBar';
 import Frame from '../../Components/Frame';
-import './QuestionPage.css';
+import '../QuestionPage/QuestionPage.css';
 
 interface QuizData {
   idUser: number;
@@ -39,6 +39,8 @@ const Body: React.FC<{}> = () => {
   const currentQuestion = questions[currentQuestionIndex];
   const [selectedChoices, setSelectedChoices] = useState<{ [key: number]: boolean }>({});
   const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
+
 
   const handleNextQuestion = () => {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -100,7 +102,7 @@ const Body: React.FC<{}> = () => {
   const grade = grade1.toFixed(2);
 
   const postData = {
-    difficult: difficulty,
+    difficult: 3,
     idSubject: subjectId,
     score: grade,
     questionWithAnswers: questions.map((question) => ({
@@ -115,7 +117,6 @@ const Body: React.FC<{}> = () => {
         })),
     })),
   };
-  const userId = localStorage.getItem('userId');
 
   try {
      const response = await fetch(`http://localhost:8085/quizzes/quizzes/${userId}`, {
@@ -144,7 +145,7 @@ const Body: React.FC<{}> = () => {
 };
 
 
-  const apiUrl = `http://localhost:8085/questions/quiz?difficulty=${difficulty}&subjectId=${subjectId}`;
+  const apiUrl = `http://localhost:8085/questions/progressiveQuiz?userId=${userId}&subjectId=${subjectId}`;
 
   const [loading, setLoading] = useState(true);
 
@@ -223,7 +224,7 @@ const Body: React.FC<{}> = () => {
   );
 };
 
-const QuestionPage = () => {
+const ProgressiveQuizPage = () => {
   return (
     <div>
       <Nav />
@@ -232,4 +233,4 @@ const QuestionPage = () => {
   );
 };
 
-export default QuestionPage;
+export default ProgressiveQuizPage;
