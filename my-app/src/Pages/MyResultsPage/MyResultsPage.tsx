@@ -44,14 +44,14 @@ const Body: React.FC<{}> = () => {
   return (
     <div className={styles.container}>
       <div className={styles.column}>
-        <div className={styles['body--title']}>My exam scores</div>
+        <div className={styles['body--title']}>My quizzes scores</div>
       </div>
       {quizInfo.length > 0 ? (
         <div className={styles.column}>
              <div className={styles['body--line']}></div>          
             <div className={styles['course-container--header']}>
             <div className={styles['id--container']}>ID</div>
-            <div className={styles['exam--container']}>Title</div>
+            <div className={styles['exam--container']}>Title of the subject</div>
             <div className={styles['difficulty--container']}>Difficulty</div>
             <div className={styles['score--container']}>Score</div>
             <div className={styles['button--container']}></div>
@@ -66,7 +66,7 @@ const Body: React.FC<{}> = () => {
               <div className={styles['score--container']}>{quiz.totalScore}</div>
               <div className={styles['button--container']}>
                 <button onClick={() => goToExamAnswers(quiz.id)}>
-                  View My Exam Answers
+                  View my answers
                 </button>
               </div>
             </div>

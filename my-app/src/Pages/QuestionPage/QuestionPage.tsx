@@ -118,7 +118,7 @@ const Body: React.FC<{}> = () => {
   const userId = localStorage.getItem('userId');
 
   try {
-     const response = await fetch('http://localhost:8085/quizzes/quizzes/66', {
+     const response = await fetch(`http://localhost:8085/quizzes/quizzes/${userId}`, {
  
       method: 'POST',
       headers: {

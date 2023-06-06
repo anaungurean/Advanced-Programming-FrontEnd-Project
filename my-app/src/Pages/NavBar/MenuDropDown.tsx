@@ -31,7 +31,7 @@ const MenuDropDown:React.FC<{}> = () => {
             <Link to='/MyResults'>My results</Link>  
           </li>
           <li>
-            <Link to='/Clasament'>Clasament</Link>  
+            <Link to='/Ranking'>Ranking</Link>  
           </li>
           <li>
             <Link to='/' onClick={handleLogout}> Logout </Link>

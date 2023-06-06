@@ -15,11 +15,12 @@ interface QuizClasament {
 
 const Body: React.FC<{}> = () => {
   const [quizClasament, setQuizClasament] = useState<QuizClasament[]>([]);
+       const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchQuizClasament = async () => {
       try {
-        const response = await fetch('http://localhost:8085/quizzes/clasament/66');
+        const response = await fetch(`http://localhost:8085/quizzes/clasament/${userId}`);
         const data = await response.json();
         setQuizClasament(data);
       } catch (error) {
@@ -39,7 +40,7 @@ const Body: React.FC<{}> = () => {
         <div className={styles.column}>
           <div className={styles['body--line']}></div>
           <div className={styles['course-container--header']}>
-          <div className={styles['id--container']}>Id</div>            
+          <div className={styles['id--container']}>Nr.</div>            
           <div className={styles['exam--container']}>Title</div>
           <div className={styles['score--container']}>Score</div>            
           <div className={styles['total--container']}>Total Quizzes</div>

@@ -132,7 +132,7 @@
 .course-container button{
     display: flex;
     flex-wrap: wrap;
-    background-color: #002F35;
+    background-color: #112D4E;
     border:none;
     border-radius: 5px;
     font-size: calc(8px + 1.0vw);
@@ -144,6 +144,7 @@
     padding-left: 5%;
     padding-right: 5%;
     transition-duration: 0.4s;
+    width: fit-content;
 }
 
 .course-container button:hover{

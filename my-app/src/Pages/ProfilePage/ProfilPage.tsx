@@ -19,11 +19,14 @@ const Body: React.FC<{}> = () => {
     email: '',
     password: ''
   });
+  const [updateStatus, setUpdateStatus] = useState('');
+
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:8085/users/66');
+        const response = await fetch(`http://localhost:8085/users/${userId}`);
         const data = await response.json();
         setUser(data);
         console.log(data);
@@ -46,7 +49,7 @@ const Body: React.FC<{}> = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8085/users/66`, {
+      const response = await fetch(`http://localhost:8085/users/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -61,9 +64,9 @@ const Body: React.FC<{}> = () => {
       });
 
       if (response.ok) {
-        console.log('User data updated successfully');
+        setUpdateStatus('User data updated successfully!');
       } else {
-        console.error('Failed to update user data');
+        setUpdateStatus('Failed to update user data');
       }
     } catch (error) {
       console.error('Error updating user data:', error);
@@ -117,6 +120,8 @@ const Body: React.FC<{}> = () => {
         </label>
 
         <button className={styles.button} type="submit">Update</button>
+
+        {updateStatus && <p  className={styles.mes} >{updateStatus}</p>}
       </form>
     </div>
   );
